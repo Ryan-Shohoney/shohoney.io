@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{188:function(e,n,t){"use strict";t.r(n);var s=t(0),c=t.n(s);class a extends s.Component{render(){const{data:e}=this.props;return c.a.createElement("input",{type:"checkbox",checked:e,disabled:!0})}}n.default=a}}]);
