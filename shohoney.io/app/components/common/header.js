@@ -6,8 +6,8 @@ import {
 } from 'react-materialize';
 
 /** 
- * Unfortunately, because this is a react library, pathing isn't friendly.  Probably need
- * to fork this to fix the Link behavior.
+ * Turns out it had nothing to do with react. It seems that it's a combination of issues. One issue, Materilaize stores
+ * some elements outside of the app node.
 */
 const Header = _ => {
 

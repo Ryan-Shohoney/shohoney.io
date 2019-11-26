@@ -1,19 +1,5 @@
-import parser, { convertNodeToElement } from 'react-html-parser';
-import Link from 'next/link';
 import React from 'react';
-
-const HtmlParserOptions = {
-  transform: (node, idx) => {
-    if (node.name == 'a') {
-      // the key slug here seems hacky, but this whole concept is hacky too.....
-      return (
-        <Link key={idx} href={node.attribs.href}>
-          {convertNodeToElement(node)}
-        </Link>
-      )
-    }
-  }
-}
+import MaterialNodeParser from './lib/MaterialNodeParser';
 
 class RichTextSection extends React.Component {
   constructor(props) {
@@ -30,7 +16,7 @@ class RichTextSection extends React.Component {
             {this.heading}
           </h2>
           <div>
-            {parser(this.body, HtmlParserOptions)}
+            {MaterialNodeParser.parse(this.body)}
           </div>
         </div>
       </div>
