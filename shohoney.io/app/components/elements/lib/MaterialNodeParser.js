@@ -4,6 +4,7 @@ import normalizeHTMLWhitepace from 'normalize-html-whitespace';
 import Link from 'next/link';
 import Collapsible from 'react-materialize/lib/Collapsible';
 import CollapsibleItem from 'react-materialize/lib/CollapsibleItem';
+import ResponsiveIframe from '../responsiveIframe';
 
 const replaceFn = (node) => {
   if (node.type === 'tag') {
@@ -29,9 +30,15 @@ const replaceFn = (node) => {
             {d2r(node.children, parserOpts)}
           </CollapsibleItem>
         );
+      case 'responsiveiframe':
+        return (
+          <ResponsiveIframe src={node.attribs.src}>
+            {d2r(node.children, parserOpts)}
+          </ResponsiveIframe>
+        );
     }
-  } else if(node.type === 'text') {
-    if(node.data === ' ') {
+  } else if (node.type === 'text') {
+    if (node.data === ' ') {
       node.data = '';
     }
   }
@@ -42,7 +49,7 @@ let parserOpts = {
   normalizeWhitespace: true
 }
 
-function materialParse (htmlString) {
+function materialParse(htmlString) {
   return (
     <div>
       {parse(normalizeHTMLWhitepace(htmlString).trim(), parserOpts)}

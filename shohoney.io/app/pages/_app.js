@@ -8,12 +8,10 @@ const DynamicMaterial = dynamic(_ => import('materialize-css/dist/js/materialize
 class BaseApp extends App {
   render () {
     const {Component, pageProps} = this.props;
-    let material;
+    let material = '';
     if(process.browser) {
       material = <DynamicMaterial />;
-    } else {
-      material = '';
-    }
+    } 
     return (
      <div>
        {material}
