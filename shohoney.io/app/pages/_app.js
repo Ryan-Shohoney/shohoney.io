@@ -1,22 +1,20 @@
 import App from 'next/app';
-import dynamic from 'next/dynamic';
-import '../sass/materialize.scss';
-
-//Pretty sure this breaks Next routing.
-const DynamicMaterial = dynamic(_ => import('materialize-css/dist/js/materialize').then(_ => M.AutoInit()), {ssr: false}) ;
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { 
+  ThemeProvider
+} from '@material-ui/core/styles';
+import theme from '../mui/theme';
 
 class BaseApp extends App {
   render () {
     const {Component, pageProps} = this.props;
     let material = '';
-    if(process.browser) {
-      material = <DynamicMaterial />;
-    } 
+
     return (
-     <div>
-       {material}
+     <ThemeProvider theme={theme}>
+       <CssBaseline />
        <Component {...pageProps} />
-     </div>
+     </ThemeProvider>
     )
   }
 }

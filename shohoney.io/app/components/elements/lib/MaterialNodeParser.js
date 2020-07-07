@@ -4,6 +4,11 @@ import normalizeHTMLWhitepace from 'normalize-html-whitespace';
 import Link from 'next/link';
 import Collapsible from 'react-materialize/lib/Collapsible';
 import CollapsibleItem from 'react-materialize/lib/CollapsibleItem';
+import {
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails
+} from '@material-ui/core';
 import ResponsiveIframe from '../responsiveIframe';
 
 const replaceFn = (node) => {
@@ -17,18 +22,22 @@ const replaceFn = (node) => {
             </a>
           </Link>
         );
-      case 'collapsible':
-        console.log(node.children);
+      case 'expansionpanel':
+        console.log(node.children)
         return (
-          <Collapsible>
+          <ExpansionPanel>
             {d2r(node.children, parserOpts)}
-          </Collapsible>
+          </ExpansionPanel>
         );
-      case 'collapsibleitem':
+      case 'ExpansionPanelSummary':
         return (
-          <CollapsibleItem header={node.attribs.header}>
+          <ExpansionPanelSummary>
             {d2r(node.children, parserOpts)}
-          </CollapsibleItem>
+          </ExpansionPanelSummary>
+        );
+      case 'ExpansionPanelDetail':
+        return (
+          <ExpansionPanelDetails></ExpansionPanelDetails>
         );
       case 'responsiveiframe':
         return (

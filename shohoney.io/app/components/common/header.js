@@ -1,52 +1,57 @@
 import Link from 'next/link';
 
 import {
-  Navbar,
-  NavItem
-} from 'react-materialize';
+  AppBar,
+  Button,
+  Toolbar,
+  Typography
+} from '@material-ui/core';
 
-/** 
- * Turns out it had nothing to do with react. It seems that it's a combination of issues. One issue, Materilaize stores
- * some elements outside of the app node.
-*/
+import {
+  makeStyles
+} from '@material-ui/core/styles';
+
+const styles = makeStyles(theme => ({
+  spaced: {
+    justifyContent: 'space-between',
+  },
+}));
+
 const Header = _ => {
-
+  const classes = styles();
   return (
-    <div className="navbar-fixed">
-      <Navbar alignLinks="right" brand={
-        <a href="/">
-          shohoney.io
-        </a>
-      }>
-
-        <Link href="/wedding" >
-          <a>
+    <AppBar position="static">
+      <Toolbar className={classes.spaced}>
+        <Link href="/">
+          <Typography variant="h4" component="a" color="inherit">
+            shohoney.io
+          </Typography>
+        </Link>
+        <div>
+        <Link href="/wedding">
+          <Button variant="text" component="a" color="inherit">
             Our Wedding
-          </a>
+          </Button>
         </Link>
         <Link href="/about">
-          <a>
+          <Button variant="text" component="a" color="inherit">
             About
-          </a>
+          </Button>
         </Link>
         <Link href="/blog">
-          <a>
+          <Button variant="text" component="a" color="inherit">
             Blog
-          </a>
+          </Button>
         </Link>
         <Link href="/nuts-and-bolts">
-          <a>
+          <Button variant="text" component="a" color="inherit">
             Nuts and Bolts
-          </a>
+          </Button>
         </Link>
-        <style jsx>{`
-          .brand-logo {
-            padding: 0 15px;
-          }
-        `}</style>
-      </Navbar>
-    </div>
-  )
+        </div>
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 export default Header;

@@ -1,30 +1,28 @@
 import React from 'react';
 import {
-  Parallax
-} from 'react-materialize';
+  makeStyles
+} from '@material-ui/core/styles';
 
-class ParallaxHero extends React.Component {
-  constructor(props) {
-    super(props);
-    this.size = props.smaller ? 'smaller': '';
-    this.src = props.src;
-    this.title = props.title;
+const ParallaxHero = props => {
+  const styles = makeStyles(theme => ({
+    hero: {
+      backgroundImage: `url(${props.src})`,
+      minHeight: props.smaller ? '400px' : '600px',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '5vw'
+    }
+  }));
 
-    this.ref = React.createRef();
-  }
-
-  componentDidMount() {
-    const M = require('materialize-css');
-    M.Slider(this.ref, {});
-  }
-
-  render() {
-    return (
-      <div ref={this.ref}>
-        <Parallax className={this.size} image={<img className='responsive-img' src={this.src} title={this.title}/> }/>
-      </div>
-    )
-  }
+  const classes = styles();
+  return (
+    <div className={classes.hero} title={props.title}>
+      {props.children}
+    </div>
+  )
 }
 
 export default ParallaxHero;

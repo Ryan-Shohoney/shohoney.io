@@ -1,28 +1,30 @@
 import React from 'react';
 import MaterialNodeParser from './lib/MaterialNodeParser';
+import {
+  Paper,
+  Typography
+} from '@material-ui/core';
+import {
+  makeStyles
+} from '@material-ui/core/styles';
 
-class RichTextSection extends React.Component {
-  constructor(props) {
-    super(props);
-    this.body = props.body;
-    this.heading = props.heading;
+const styles = makeStyles(theme => ({
+  gutter: {
+    padding: '15px 30px',
+    margin: '15px'
   }
-
-  render() {
-    return (
-      <div className="secion white">
-        <div className="row container">
-          <h2>
-            {this.heading}
-          </h2>
-          <div>
-            {MaterialNodeParser.parse(this.body)}
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+}));
+const RichTextSection = props => {
+  const classes = styles();
+  return (
+    <Paper className={classes.gutter}>
+      <Typography variant="h2">
+        {props.heading}
+      </Typography>
+      {MaterialNodeParser.parse(props.body)}
+    </Paper>
+  );
+};
 
 
 export default RichTextSection;
