@@ -9,7 +9,13 @@ export const Client = (req = null) => (
 );
 
 export const LinkResolver = doc => {
-  return '/';
+  const slug = doc.slug || '';
+  return `/${slug}`;
+}
+
+export const HrefResolver = doc => {
+  const slug = doc.slug || '';
+  return `/${slug.replace(/-./g, x => x.toUpperCase()[1])}`;
 }
 
 

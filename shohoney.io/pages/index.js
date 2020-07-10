@@ -1,20 +1,16 @@
-import Head from 'next/head'
 import { Client, LinkResolver } from '../prismic-configuration';
 import Prismic from 'prismic-javascript';
 import { RichText } from 'prismic-reactjs';
+import HeadComponent from '../components/common/head/head.component';
+import Header from '../components/common/header/header.component';
 
 
 
-function Home({ pageData}) {
-  console.log(pageData.data.landing_blurb);
+function Home({ pageData, headerData }) {
   return (
     <div className="container">
-      <Head>
-        <title>{pageData.data.page_title}</title>
-        {pageData.data.metatags.map((mt, k) => <meta key={k} name={mt.metatag_name} content={mt.metatag_content} />)}
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <HeadComponent data={pageData.data}/>
+      <Header data={headerData}/>
       <main>
         {RichText.render(pageData.data.landing_blurb, LinkResolver)}
       </main>
@@ -32,9 +28,12 @@ Home.getInitialProps = async (ctx) => {
       Prismic.Predicates.at('document.type', 'landing'),
       Prismic.Predicates.any('document.tags', ['Home'])
     ]);
+
+  const headerResponse = await Client(ctx.req).getSingle('navigation');
   const pageData = data.results[0];
-  console.log(pageData);
-  return { pageData }
+  const headerData = headerResponse.data;
+
+  return { pageData, headerData }
 }
 
 export default Home;
