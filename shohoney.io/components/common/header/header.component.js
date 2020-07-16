@@ -2,7 +2,7 @@ import { Client, LinkResolver } from '../../../prismic-configuration';
 import { RichText } from 'prismic-reactjs';
 import PrismicLink from '../../prismic/link/link.prismic.component';
 
-function Header ({ data }) {
+function Header({ data }) {
   const navItems = data.body.map(b => {
     return {
       topLevelItem: b.primary,
@@ -12,13 +12,15 @@ function Header ({ data }) {
   return (
     <header>
       <img src={data.site_logo.url} alt={data.site_logo.alt} />
-      <ul>
+      <ul className="space-x-2">
         {navItems.map((navItem, index) => (
-          <PrismicLink key={index} link={navItem.topLevelItem.navigation_link} >
-            <a>
-              {RichText.render(navItem.topLevelItem.link_label, LinkResolver)}
-            </a>
-          </PrismicLink>
+          <li key={index}>
+            <PrismicLink link={navItem.topLevelItem.navigation_link} >
+              <a>
+                {RichText.render(navItem.topLevelItem.link_label, LinkResolver)}
+              </a>
+            </PrismicLink>
+          </li>
         ))}
       </ul>
     </header>

@@ -8,7 +8,7 @@ import Header from '../components/common/header/header.component';
 
 function Home({ pageData, headerData }) {
   return (
-    <div className="container">
+    <div>
       <HeadComponent data={pageData.data}/>
       <Header data={headerData}/>
       <main>

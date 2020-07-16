@@ -1,0 +1,9 @@
+@import './abstract/tailwind.css';
+@import './components/common/header.css';
+body {
+  @apply bg-gray-100;
+}
+
+main {
+  @apply p-4;
+}
