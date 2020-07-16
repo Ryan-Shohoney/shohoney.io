@@ -14,7 +14,6 @@ function Header ({ data }) {
       <img src={data.site_logo.url} alt={data.site_logo.alt} />
       <ul>
         {navItems.map((navItem, index) => (
-          
           <PrismicLink key={index} link={navItem.topLevelItem.navigation_link} >
             <a>
               {RichText.render(navItem.topLevelItem.link_label, LinkResolver)}
